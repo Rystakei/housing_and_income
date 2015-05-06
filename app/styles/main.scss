@@ -1,0 +1,63 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro);
+
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
+
+p ,p b{
+	font-size: 24px;
+	letter-spacing: 0.040em;
+	line-height: 1.25;
+	font-family: 'Maven Pro';
+}
+
+.title {
+	text-align: center;
+}
+
+.tooltip {
+	position:absolute;
+	display:inline-block;
+	min-width:5em;
+	padding:.5em;
+	background:#F4C63D;
+	color:#453D3F;
+	font-weight:700;
+	text-align:center;
+	pointer-events:none;
+	z-index:1;
+}
+.tooltip:after {
+content:"";
+position:absolute;
+top:100%;
+left:50%;
+width:0;
+height:0;
+margin-left:-15px;
+border:15px solid transparent;border-top-color:#F4C63D}code{font-family:"Source Code Pro","Courier New",monospace!important;word-wrap:break-word}.sticky.contain-to-grid{box-shadow:0 3px 0 rgba(0,0,0,.3)}
+* {
+  letter-spacing: 0.050em;
+  font-family: 'Roboto';
+}
+
+h1,h3,h4 {
+	font-family: 'Josefin Sans';
+}
+
+h1 {
+	padding-bottom: 50px;
+}
+
+.header {
+  padding-bottom: 50px;
+}
+
+.under {
+  margin-top: -15px;
+  font-family: 'Open Sans';
+}
