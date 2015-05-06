@@ -24,38 +24,20 @@ var series = [];
 // var incomes = [34207, 49081, 49987];
 
 $.each(sortedData, function(key, value) {
-	console.log("v", value);
+	// console.log("v", value);
 	labels.push(value.city);
 	// var income = parseInt(value.income.replace(/\s/g, "").replace(/,/g, ""));
 	var income = value.income;
 	var ratio = value.ratio;
 
-	series.push({meta: "Houses in " + value.city + " are " + ratio + " times the median income", value: ratio});
+	series.push({name: value.city, meta: "Houses in " + value.city + " are " + ratio + " times the median income", value: ratio});
 });
-
-// $.each(results, function(key, value) {
-// 	console.log("v", value);
-// 	labels.push(value.city);
-// 	var income = parseInt(value.income.replace(/\s/g, "").replace(/,/g, ""));
-// 	var ratio = (400000 / income).toFixed(2);
-
-// 	console.log("400000 / " + income + "is: " + ratio);
-// 	series.push({meta: value.city, value: ratio});
-// });
-
-console.log("labels", labels, "series", series);
-
-// $.each(incomes, function(i, v) {
-// 	console.log("value", v);
-// 	var diff = v/200000 * 100; 
-// 	series.push(diff);
-// });
 
 var data = {labels: labels, series: [series]};
 
 var zillowAPI = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1erkbtbrv2j_76gmj&state=WA&city=Seattle";
 $.get( zillowAPI, function( data ) {
-	console.log(data);
+	// console.log(data);
 });
 
 var options = {
@@ -80,32 +62,24 @@ var responsiveOptions = [
     }
   }]
 ];
+$('document').ready(function() {
+  $('body').trigger('click');
+
+});
 
 new Chartist.Line('.ct-chart', data, options, responsiveOptions);
+
+// new Chartist.Line('.ct-chart-small', data, options, responsiveOptions);
+
 
 
 
 var $chart = $('.ct-chart');
 
-// var $toolTip = $chart
-//   .append('<div class="tooltip"></div>')
-//   .find('.tooltip');
 
-// $chart.on('mouseenter', '.ct-point', function() {
-//   console.log('mouse enter');
-//   var $point = $(this),
-//   	label = $point.attr('ct:label'),
-//     value = $point.attr('ct:value');
-//   $toolTip.html("Houses in" + label + "are " + value + " times the median income").show();
-// });
+$('select').on('change', function() {
+  $('.city-data').fadeIn( 3000, function() {
+  $('.city-data').show();
+  });
+});
 
-// $chart.on('mouseleave', '.ct-point', function() {
-//   $toolTip.hide();
-// });
-
-// $chart.on('mousemove', function(event) {
-//   $toolTip.css({
-//     left: (event.offsetX || event.originalEvent.layerX) - $toolTip.width() / 2 - 10,
-//     top: (event.offsetY || event.originalEvent.layerY) - $toolTip.height() - 40
-//   });
-// });

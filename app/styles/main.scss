@@ -15,6 +15,24 @@ p ,p b{
 	font-family: 'Maven Pro';
 }
 
+
+
+.chart-section {
+  background: #333;
+  color: white;
+  height: 100%;
+}
+
+.city-data{
+  height: 100%;
+  display: none;
+
+  h1 {
+    margin-bottom: -24px;
+    padding-bottom: -10px;
+  }
+}
+
 .title {
 	text-align: center;
 }
@@ -49,7 +67,7 @@ h1,h3,h4 {
 	font-family: 'Josefin Sans';
 }
 
-h1 {
+h1.title {
 	padding-bottom: 50px;
 }
 
