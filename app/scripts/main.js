@@ -49,11 +49,13 @@ $('document').ready(function() {
     $(v).attr('ct:key', k);
   });
 
-  $('.ct-point').addClass('selectedPoint');
 
-  $('.ct-point').on('mouseenter', function() {
+  d3.selectAll('.ct-point').on('mouseenter', function() {
     var key = $(this).attr('ct:key');
     $('select').first().val(key).change();
+    d3.selectAll('.ct-point')
+      .classed('emphasis', false);
+    d3.select(this).classed('emphasis', true);
   });
 });
 
