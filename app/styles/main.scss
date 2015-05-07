@@ -2,8 +2,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
-@import url(http://fonts.googleapis.com/css?family=Roboto);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 @import url(http://fonts.googleapis.com/css?family=Maven+Pro);
 
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
@@ -70,7 +68,7 @@ margin-left:-15px;
 border:15px solid transparent;border-top-color:#F4C63D}code{font-family:"Source Code Pro","Courier New",monospace!important;word-wrap:break-word}.sticky.contain-to-grid{box-shadow:0 3px 0 rgba(0,0,0,.3)}
 * {
   letter-spacing: 0.050em;
-  font-family: 'Roboto';
+  font-family: 'Maven Pro';
 }
 
 h1,h3,h4 {
@@ -87,5 +85,5 @@ h1.title {
 
 .under {
   margin-top: -15px;
-  font-family: 'Open Sans';
+  font-family: 'Maven Pro';
 }
