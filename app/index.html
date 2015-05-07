@@ -39,10 +39,6 @@
           <p> Choose A City</p>
           <div class="form-group">
             <select class="form-control">
-              <option value="Philadelphia">Philadelphia</option>
-              <option value="Boston">Boston</option>
-              <option value="Austin">Austin</option>
-              <option value="Detroit">Detroit</option>
             </select>
           </div>
           <hr>
@@ -50,13 +46,13 @@
       </div>
         <div class="row chart-container">
           <div class="col-xs-12 col-md-4 col-lg-4 chart-section city-data">
-            <h1> Boston </h1>
-            <h3> 11.12x income to purchase a house </h3>
-            <p> Median house price: $<span class="house-price">400,000</span></p>
-            <p> Median household income: $<span class="income">38,000</span> </p>
-            <p> Recommended income to comfortably afford a house: <span class="rec-income">$100,000</span></p>
+            <h1 class="city-name"> </h1>
+            <h3> <span class="ratio"></span>x income to purchase a house </h3>
+            <p> Median house price: $<span class="house-price"></span></p>
+            <p> Median household income: $<span class="median-income"></span> </p>
+            <p> Recommended income to comfortably afford a house: $<span class="recommended-income"></span></p>
 
-            <p> Estimated income to qualify for a mortgage: $<span class="mortgage-income">80,000</span> </p>
+            <p> Estimated income needed to qualify for a mortgage: $<span class="mortgage-income"></span> </p>
           </div>
           <div class="col-xs-12 col-md-8 col-lg-8 ratio-chart">
             <div class="ct-chart ct-perfect-fourth"></div>
@@ -119,6 +115,5 @@
         <!-- endbuild -->
         <script src="scripts/main.jsx" type="text/jsx"></script>
 
-        <script src="http://fb.me/JSXTransformer-0.12.0.js"></script>
 </body>
 </html>
