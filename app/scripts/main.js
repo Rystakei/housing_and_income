@@ -43,53 +43,75 @@ var responsiveOptions = [
     }
   }]
 ];
+new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 $('document').ready(function() {
-  $('body').trigger('click');
+
   $.each($('.ct-point'), function(k,v) {
     $(v).attr('ct:key', k);
   });
 
+  var dataPoints = d3.selectAll('.ct-point')[0];
 
+  // $('body').on('mouseenter', function() {
+  //   console.log('body');
+  // });
+
+var chart = $('.ct-chart');
+
+chart.on('draw', function() {
+  // console.log("drawing map");
+});
+
+  d3.select('.test-svg').on('mouseenter', function(){
+    console.log('hover test');
+  });
+
+  $('.ct-point').on('mouseenter', function() {
+    console.log("rawr");
+  });
+
+  console.log("hmm..")
+  console.log(d3.selectAll('.ct-point'));
   d3.selectAll('.ct-point').on('mouseenter', function() {
+    console.log("selected");
     var key = $(this).attr('ct:key');
     $('select').first().val(key).change();
     d3.selectAll('.ct-point')
       .classed('emphasis', false);
     d3.select(this).classed('emphasis', true);
   });
+
+  $('select').on('change', function() {
+    var city = $('select').first().val();
+
+    var cityData = sortedData[city];
+    var housePrice = delimitNumbers(cityData.house_price);
+    var medianIncome = delimitNumbers(Number(cityData.income).toFixed(0));
+    var recommendedIncome = delimitNumbers((Number(cityData.house_price) / 3).toFixed(0));
+    var mortgageIncome = delimitNumbers((Number(cityData.house_price) / 5).toFixed(0));
+
+    $('.house-price').text(housePrice);
+    $('.city-name').text(cityData.city);
+    $('.ratio').text(cityData.ratio);
+    $('.median-income').text(medianIncome);
+    $('.recommended-income').text(recommendedIncome);
+    $('.mortgage-income').text(mortgageIncome);
+
+    d3.selectAll('.ct-point')
+      .classed('emphasis', false);
+    d3.select(dataPoints[city]).classed('emphasis', true);
+
+    $('.city-data').fadeIn( 3000, function() {
+      $('.city-data').show();
+    });
+
+  });
+
 });
 
-new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 
 function delimitNumbers(str) {
   return (str + "").replace(/\b(\d+)((\.\d+)*)\b/g, function(a, b, c) {
     return (b.charAt(0) > 0 && !(c || ".").lastIndexOf(".") ? b.replace(/(\d)(?=(\d{3})+$)/g, "$1,") : b) + c;
   });
 }
-
-
-var $chart = $('.ct-chart');
-
-
-$('select').on('change', function() {
-  var city = $('select').first().val();
-
-  var cityData = sortedData[city];
-  var housePrice = delimitNumbers(cityData.house_price);
-  var medianIncome = delimitNumbers(Number(cityData.income).toFixed(0));
-  var recommendedIncome = delimitNumbers((Number(cityData.house_price) / 3).toFixed(0));
-  var mortgageIncome = delimitNumbers((Number(cityData.house_price) / 5).toFixed(0));
-
-  $('.house-price').text(housePrice);
-  $('.city-name').text(cityData.city);
-  $('.ratio').text(cityData.ratio);
-  $('.median-income').text(medianIncome);
-  $('.recommended-income').text(recommendedIncome);
-  $('.mortgage-income').text(mortgageIncome);
-
-  $('.city-data').fadeIn( 3000, function() {
-    $('.city-data').show();
-  });
-
-});
-
