@@ -2,6 +2,7 @@ var sortedData = [{"city":"Detroit","state":"MI","house_price":"39000","income":
 var labels = [];
 var series = [];
 
+
 $.each(sortedData, function(key, value) {
 	labels.push(value.city);
 	var income = value.income;
@@ -14,6 +15,12 @@ $.each(sortedData, function(key, value) {
   $('select').append(myOption);
 
 });
+
+//add options
+// var sortedLabels = labels.sort(); 
+// $.each(sortedLabels, function(key, value) {
+//   var myOption = $('<option value="'+ key + '">' + value.city + '</option>');
+// })
 
 var data = {labels: labels, series: [series]};
 
