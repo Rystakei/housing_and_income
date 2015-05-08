@@ -17,7 +17,7 @@ $.each(sortedData, function(key, value) {
 });
 
 //add options
-// var sortedLabels = labels.sort(); 
+// var sortedLabels = labels.sort();
 // $.each(sortedLabels, function(key, value) {
 //   var myOption = $('<option value="'+ key + '">' + value.city + '</option>');
 // })
@@ -59,12 +59,24 @@ var dataPoints = d3.selectAll('.ct-point')[0];
 chart.on('draw', function() {
   var drawnPoints = d3.select('body').selectAll('.ct-point')[0];
 
+  $.each($('.ct-point'), function(k,v) {
+    $(v).attr('ct:key', k);
+  });
+
   if (drawnPoints.length === dataPoints.length) {
+    // d3.selectAll('.ct-point').on('mouseenter', function() {
+    //   d3.selectAll('.ct-point')
+    //     .classed('emphasis', false);
+    //   d3.select(this).classed('emphasis', true);
+    // });
+
     d3.selectAll('.ct-point').on('mouseenter', function() {
+      var key = $(this).attr('ct:key');
+      $('select').first().val(key).change();
       d3.selectAll('.ct-point')
         .classed('emphasis', false);
       d3.select(this).classed('emphasis', true);
-    }); 
+    });
   }
 });
 
@@ -77,8 +89,8 @@ chart.on('draw', function() {
   });
 
   $('select').on('change', function() {
-    var city = $('select').first().val();
-
+    var city = $(this).val();
+    console.log('city', city);
     var cityData = sortedData[city];
     var housePrice = delimitNumbers(cityData.house_price);
     var medianIncome = delimitNumbers(Number(cityData.income).toFixed(0));
