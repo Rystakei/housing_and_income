@@ -17,10 +17,6 @@ $.each(sortedData, function(key, value) {
 
 var data = {labels: labels, series: [series]};
 
-// var zillowAPI = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1erkbtbrv2j_76gmj&state=WA&city=Seattle";
-// $.get( zillowAPI, function( data ) {
-// 	// console.log(data);
-// });
 
 var options = {
   showLine: false,
@@ -43,37 +39,29 @@ var responsiveOptions = [
     }
   }]
 ];
-new Chartist.Line('.ct-chart', data, options, responsiveOptions);
+var chart = new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 $('document').ready(function() {
 
   $.each($('.ct-point'), function(k,v) {
     $(v).attr('ct:key', k);
   });
 
-  var dataPoints = d3.selectAll('.ct-point')[0];
+var dataPoints = d3.selectAll('.ct-point')[0];
 
-  // $('body').on('mouseenter', function() {
-  //   console.log('body');
-  // });
-
-var chart = $('.ct-chart');
 
 chart.on('draw', function() {
-  // console.log("drawing map");
+  var drawnPoints = d3.select('body').selectAll('.ct-point')[0];
+
+  if (drawnPoints.length === dataPoints.length) {
+    d3.selectAll('.ct-point').on('mouseenter', function() {
+      d3.selectAll('.ct-point')
+        .classed('emphasis', false);
+      d3.select(this).classed('emphasis', true);
+    }); 
+  }
 });
 
-  d3.select('.test-svg').on('mouseenter', function(){
-    console.log('hover test');
-  });
-
-  $('.ct-point').on('mouseenter', function() {
-    console.log("rawr");
-  });
-
-  console.log("hmm..")
-  console.log(d3.selectAll('.ct-point'));
   d3.selectAll('.ct-point').on('mouseenter', function() {
-    console.log("selected");
     var key = $(this).attr('ct:key');
     $('select').first().val(key).change();
     d3.selectAll('.ct-point')
