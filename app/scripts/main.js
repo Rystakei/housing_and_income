@@ -122,3 +122,13 @@ function delimitNumbers(str) {
     return (b.charAt(0) > 0 && !(c || ".").lastIndexOf(".") ? b.replace(/(\d)(?=(\d{3})+$)/g, "$1,") : b) + c;
   });
 }
+
+new Chartist.Line('#chart1', {
+  labels: [1, 2, 3, 4],
+  series: [[1, 2, 3, 4]]
+});
+
+new Chartist.Bar('#chart2', {
+  labels: [1, 2, 3, 4],
+  series: [[1, 2, 3, 4]]
+});
