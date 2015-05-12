@@ -144,13 +144,15 @@ income_and_price_data = []
 
 income_data.zip(price_data) do |income, price|
 	year = income["Age and year"][0..3].to_i
-	median_price = price["Median"].gsub(",","")
-	median_price.slice!(0,2)
-	median_price = median_price.to_i
-	median_income = income["2013 Median Income"].to_i * 1000
-	year = {:year =>year, :median_income => median_income, :median_price => median_price}
-	puts year
-	income_and_price_data << year
+	if (year % 5 == 0)
+		median_price = price["Median"].gsub(",","")
+		median_price.slice!(0,2)
+		median_price = median_price.to_i
+		median_income = income["2013 Median Income"].to_i * 1000
+		year = {:year =>year, :median_income => median_income, :median_price => median_price}
+		puts year
+		income_and_price_data << year
+	end
 end
 
 

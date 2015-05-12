@@ -123,12 +123,26 @@ function delimitNumbers(str) {
   });
 }
 
-new Chartist.Line('#chart1', {
-  labels: [1, 2, 3, 4],
-  series: [[1, 2, 3, 4]]
+
+var historicSeries = [];
+var historicLabels = [];
+
+var historicData = 
+  [{"year":1965,"median_income":44000,"median_price":20000},{"year":1970,"median_income":52000,"median_price":23400},{"year":1975,"median_income":54000,"median_price":39300},{"year":1980,"median_income":56000,"median_price":64600},{"year":1985,"median_income":57000,"median_price":84300},{"year":1990,"median_income":61000,"median_price":122900},{"year":1995,"median_income":61000,"median_price":133900},{"year":2000,"median_income":68000,"median_price":169000},{"year":2005,"median_income":67000,"median_price":240900},{"year":2010,"median_income":64000,"median_price":221800}];
+$.each(historicData, function(key, value) {
+  historicLabels.push(value.year);
+  var income = value.median_income;
+  var ratio = value.median_price / value.median_income;
+  console.log(value);
+  console.log("ratio", ratio);
+
+  historicSeries.push(ratio);
+
 });
 
-new Chartist.Bar('#chart2', {
-  labels: [1, 2, 3, 4],
-  series: [[1, 2, 3, 4]]
+console.log(historicSeries);
+
+new Chartist.Line('#chart1', {
+  labels: historicLabels,
+  series: [historicSeries]
 });
