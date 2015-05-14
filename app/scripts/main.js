@@ -37,15 +37,25 @@ var options = {
   ]
 };
 
+
 var responsiveOptions = [
   ['screen and (min-width: 640px)', {
     axisX: {
       labelInterpolationFnc: function(value, index) {
-        return index % 4 === 0 ? 'W' + value : null;
+        return index % 4 === 0 ? value : null;
       },
+      showGrid: false,
       showLabel: false
     }
-  }]
+  }],
+  ['screen and (max-width: 640px)', {
+        axisX: {
+          labelInterpolationFnc: function (value) {
+            return value[0];
+          },
+          showGrid: false
+        }
+      }]
 ];
 var chart = new Chartist.Line('#cities-chart', data, options, responsiveOptions);
 $('document').ready(function() {
