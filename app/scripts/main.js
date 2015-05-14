@@ -42,11 +42,12 @@ var responsiveOptions = [
     axisX: {
       labelInterpolationFnc: function(value, index) {
         return index % 4 === 0 ? 'W' + value : null;
-      }
+      },
+      showLabel: false
     }
   }]
 ];
-var chart = new Chartist.Line('.ct-chart', data, options, responsiveOptions);
+var chart = new Chartist.Line('#cities-chart', data, options, responsiveOptions);
 $('document').ready(function() {
 
   $.each($('.ct-point'), function(k,v) {
@@ -127,7 +128,7 @@ function delimitNumbers(str) {
 var historicSeries = [];
 var historicLabels = [];
 
-var historicData = 
+var historicData =
   [{"year":1965,"median_income":44000,"median_price":20000},{"year":1970,"median_income":52000,"median_price":23400},{"year":1975,"median_income":54000,"median_price":39300},{"year":1980,"median_income":56000,"median_price":64600},{"year":1985,"median_income":57000,"median_price":84300},{"year":1990,"median_income":61000,"median_price":122900},{"year":1995,"median_income":61000,"median_price":133900},{"year":2000,"median_income":68000,"median_price":169000},{"year":2005,"median_income":67000,"median_price":240900},{"year":2010,"median_income":64000,"median_price":221800}];
 $.each(historicData, function(key, value) {
   historicLabels.push(value.year);
