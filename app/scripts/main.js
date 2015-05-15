@@ -16,6 +16,61 @@ $.each(sortedData, function(key, value) {
 
 });
 
+
+// $('#myAffix').affix({
+//   offset: {
+//     top: function() {
+//       var affixTop = $('#myAffix').first().offset().top;
+//       // console.log("height " + affixTop);
+//       return affixTop;
+
+//     }
+//     // ,bottom: function () {
+//     //   var first = $('.more-info').outerHeight(true);
+//     //   // var second = $('.more-info').outHeight();
+//     //   console.log("height " + $('.more-info').outerHeight(true));
+//     //   return first;
+//     // }
+//   }
+// }).on('affix.bs.affix', function () { // before affix
+//     $(this).width();
+// });
+
+// $('.random').affix({
+//   offset: {
+//     top: function() {
+//       var affixTop = $('#myAffix').first().offset().top;
+//       // console.log("height " + affixTop);
+//       return affixTop;
+
+//     }
+//     // ,bottom: function () {
+//     //   var first = $('.more-info').outerHeight(true);
+//     //   // var second = $('.more-info').outHeight();
+//     //   console.log("height " + $('.more-info').outerHeight(true));
+//     //   return first;
+//     // }
+//   }
+// }).on('affix.bs.affix', function () { // before affix
+//     $(this).width();
+// });
+
+var offsetTop = $('#myAffix').first().offset().top;
+var offsetBottom = $('.more-info').first().offset().top;
+
+$("#myAffix").affix({
+        offset: { 
+            top: function() {
+              console.log(offsetTop, offsetBottom);
+              return offsetTop;
+            },
+            bottom: function() {
+              return 1500;
+            }
+      }
+    });
+
+
 //add options
 // var sortedLabels = labels.sort();
 // $.each(sortedLabels, function(key, value) {
@@ -101,7 +156,6 @@ chart.on('draw', function() {
 
   $('select').on('change', function() {
     var city = $(this).val();
-    console.log('city', city);
     var cityData = sortedData[city];
     var housePrice = delimitNumbers(cityData.house_price);
     var medianIncome = delimitNumbers(Number(cityData.income).toFixed(0));
@@ -144,14 +198,9 @@ $.each(historicData, function(key, value) {
   historicLabels.push(value.year);
   var income = value.median_income;
   var ratio = value.median_price / value.median_income;
-  console.log(value);
-  console.log("ratio", ratio);
-
   historicSeries.push(ratio);
 
 });
-
-console.log(historicSeries);
 
 new Chartist.Line('#chart1', {
   labels: historicLabels,

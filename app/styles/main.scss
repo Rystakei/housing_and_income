@@ -12,6 +12,19 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   font-size: 1.75em;
 }
 
+#myAffix {
+	top: 30px;
+}
+
+.affix-bottom{
+	position: absolute;
+	bottom: 40;
+}
+
+.some-numbers{
+	position: relative;
+}
+
 
 .fact {
 	border: solid 5px black;
