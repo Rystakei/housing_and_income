@@ -7,6 +7,7 @@
     "chartist": "~0.7.4",
     "chartist-plugin-tooltip": "~0.0.10",
     "jquery": "~2.1.4",
-    "d3": "~3.5.5"
+    "d3": "~3.5.5",
+    "bower-jvectormap": "~1.2.2"
   }
 }
