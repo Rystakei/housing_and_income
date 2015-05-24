@@ -1,11 +1,3 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-// bower:scss
-@import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// endbower
-@import url(http://fonts.googleapis.com/css?family=Maven+Pro);
-
-@import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
-
 .ct-chart .ct-label.ct-horizontal {
   color: #333;
   fill: #333;

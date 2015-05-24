@@ -2,12 +2,12 @@
   "name": "housing-and-wages",
   "private": true,
   "dependencies": {
-    "bootstrap-sass-official": "~3.2.0",
     "react": "~0.13.2",
     "chartist": "~0.7.4",
     "chartist-plugin-tooltip": "~0.0.10",
     "jquery": "~2.1.4",
     "d3": "~3.5.5",
-    "bower-jvectormap": "~1.2.2"
+    "bower-jvectormap": "~1.2.2",
+    "bootstrap-sass": "~3.3.4"
   }
 }
