@@ -12,6 +12,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   font-size: 1.75em;
 }
 
+img {
+	width: 400px;
+	height: 600px;
+}
+
 
 .affix-top {
   top: 0;
@@ -33,17 +38,13 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   // bottom: 0;
 }
 
-img{
-  width: 600px;
-  height: 350px;
-}
 #myAffix {
 	top: 0px;
 }
 
 .affix-bottom{
 	position: absolute;
-	bottom: 40;
+	bottom: 20;
 }
 
 .some-numbers{

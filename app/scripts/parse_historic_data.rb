@@ -148,7 +148,7 @@ income_data.zip(price_data) do |income, price|
 		median_price = price["Median"].gsub(",","")
 		median_price.slice!(0,2)
 		median_price = median_price.to_i
-		median_income = income["2013 Median Income"].to_i * 1000
+		median_income = income["Current Median Income"].to_i * 1000
 		year = {:year =>year, :median_income => median_income, :median_price => median_price}
 		puts year
 		income_and_price_data << year
