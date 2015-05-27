@@ -10,11 +10,15 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css" />
+    <link rel="stylesheet" href="bower_components/bower-jvectormap-2/jquery-jvectormap-2.0.0.css" />
+
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="bower_components/bower-jvectormap-2/jquery-jvectormap-2.0.0.css" />
+
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -75,12 +79,9 @@
         <div class="row some-numbers">
 <!--         <div class="col-xs-3" id="myScrollspy">
  -->
-          <div class="col-xs-6 col-md-6 col-lg-6">
-            <div id="myAffix">
-            <div class="highlights-container">
-<!--               <p>Data Highlights</p>
- -->            </div>
-              <img src="http://images.clipartpanda.com/united-states-clip-art-dcre7aEdi.svg">
+          <div id="usa-map" class="col-xs-6 col-md-6 col-lg-6">
+            <div id="myAffix" style="height: 600px; width: 600px;">
+              <div id="map" style="height: 300px; width: 600px;"></div>
             </div>
           </div>
 
@@ -160,11 +161,12 @@
     <script src="bower_components/chartist/dist/chartist.min.js"></script>
     <script src="bower_components/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="bower_components/d3/d3.js"></script>
-    <script src="bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/bower-jvectormap-2/jquery-jvectormap-2.0.0.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <script src="bower_components/bower-jvectormap-2/jquery-jvectormap-us-aea-en.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

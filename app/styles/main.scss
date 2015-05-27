@@ -6,6 +6,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
 
+#map{
+	min-height: 600px;
+}
+
 .ct-chart .ct-label.ct-horizontal {
   color: #333;
   fill: #333;
@@ -36,6 +40,7 @@ img {
 
 #myAffix {
 	top: 0px;
+	height: 600px;
 }
 
 .affix-bottom{
@@ -183,3 +188,7 @@ h1.title {
   margin-top: -15px;
   font-family: 'Maven Pro';
 }
+
+
+
+
