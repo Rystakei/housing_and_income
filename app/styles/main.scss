@@ -6,6 +6,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
 
+body {
+	position: relative;
+}
+
 #map{
 	min-height: 600px;
 }
@@ -54,9 +58,24 @@ img {
 
 
 .fact {
+	text-align: center;
+	line-height: 500px;
+	min-height: 620px;
 	border: solid 5px black;
 	margin-bottom: 10px;
 	padding: 0px 5px;
+
+	h1 {
+		text-align: center;
+		font-size: 60px;
+		vertical-align: middle;
+		display: inline-block;
+	}
+
+	p {
+		vertical-align: middle;
+		font-size: 40px;
+	}
 
 	.fact-ratio {
 		color: blue;

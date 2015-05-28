@@ -32,6 +32,7 @@ northeast = regions["northeast"];
 $('document').ready(function() {
   var usaMap = $('#map').vectorMap({map: 'us_aea_en', 
     backgroundColor: "white",
+    zoomOnScroll: false,
     regionStyle: {
       initial: {
         fill: '#333'
@@ -50,7 +51,8 @@ var regionMarkers = [];
 var usaMap = $('#map').vectorMap('get', 'mapObject');
 $.each(geodata, function(k,v) {
   regionMarkers.push({latLng: [v.lat, v.lng], name: v.city});
-  regions[v.region.toLowerCase()].push(v);
+  // regions[v.region.toLowerCase()].push(v);
+  regions[v.region.toLowerCase()].push({latLng: [v.lat, v.lng], name: v.city});
 });
 
 // usaMap.createMarkers([
@@ -62,6 +64,65 @@ $.each(geodata, function(k,v) {
 usaMap.createMarkers(regionMarkers);
 
   
+
+
+  //update markers while scrolling
+
+  var dataSection = $('#lowest-ratio').first();
+  var greatestSection = $('#greatest-ratio').first();
+  var northeastSection = $('#northeast').first(),
+      citiesSection = $('#cities').first();
+
+  var lowest = {top: dataSection.offset().top,
+  bottom: dataSection.offset().top + dataSection.outerHeight()};
+    var greatest = {top: greatestSection.offset().top,
+  bottom: greatestSection.offset().top + greatestSection.outerHeight()};
+      var northeast = {top: northeastSection.offset().top,
+  bottom: northeastSection.offset().top + northeastSection.outerHeight()};
+  var cities = {top: citiesSection.offset().top,
+  bottom: citiesSection.offset().top + citiesSection.outerHeight()};
+
+
+    $('.fact-region').each(function(k,v) {
+      var region = $(v);
+      var regionName = region.attr('id');
+      var position = {top: region.offset().top,
+  bottom: region.offset().top + region.outerHeight()};
+
+      $(window).scroll(function() {
+        if ($(window).scrollTop() >= position.top && $(window).scrollTop() <= position.bottom) {
+          usaMap.removeAllMarkers();
+          usaMap.createMarkers(regions[regionName]);
+        }
+      });
+
+    });
+
+
+  $(window).scroll(function() {
+    // console.log(cities.top, $(window).scrollTop());
+    if ($(window).scrollTop() >= cities.top && $(window).scrollTop() <= cities.bottom) {
+      console.log("Boo");
+      usaMap.removeAllMarkers();
+      usaMap.createMarkers(regionMarkers);
+    }
+
+    if ($(window).scrollTop() >= lowest.top && $(window).scrollTop() <= lowest.bottom) {
+      usaMap.removeAllMarkers();
+      usaMap.createMarkers({latLng: [42.331427,-83.0457538], name: "Detroit"});
+    }
+    if ($(window).scrollTop() >= greatest.top && $(window).scrollTop() <= greatest.bottom) {
+      usaMap.removeAllMarkers();
+      usaMap.createMarkers({latLng: [37.7749295,-122.4194155], name: "San Francisco"});
+    }
+
+    if ($(window).scrollTop() >= northeast.top && $(window).scrollTop() <= northeast.bottom) {
+      usaMap.removeAllMarkers();
+      usaMap.createMarkers(regions.northeast);
+    }
+
+  });
+
 });
 
 
@@ -78,7 +139,7 @@ $("#myAffix").affix({
               return offsetTop;
             },
             bottom: function() {
-              return 1500;
+              return 1650;
             }
       }
     });
