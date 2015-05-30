@@ -4,16 +4,25 @@ var series = [];
 
 
 $.each(sortedData, function(key, value) {
+  value["id"]=key;
 	labels.push(value.city);
 	var income = value.income;
 	var ratio = value.ratio;
 
 	series.push({meta: value.city, value: ratio});
 
+});
 
-  var myOption = $('<option value="'+ key + '">' + value.city + '</option>');
+//sort cities alphabetically and create options for select element
+
+var alphabeticData = _.sortBy(sortedData, function(i) {
+  return i.city.toLowerCase();
+});
+
+$.each(alphabeticData, function(key, value){
+  var myOption = $('<option value="'+ value.id + '">' + value.city + '</option>');
   $('select').append(myOption);
-
+  $('select').select2(); 
 });
 
 //Animated us map
@@ -100,9 +109,7 @@ usaMap.createMarkers(regionMarkers);
 
 
   $(window).scroll(function() {
-    // console.log(cities.top, $(window).scrollTop());
     if ($(window).scrollTop() >= cities.top && $(window).scrollTop() <= cities.bottom) {
-      console.log("Boo");
       usaMap.removeAllMarkers();
       usaMap.createMarkers(regionMarkers);
     }
@@ -114,11 +121,6 @@ usaMap.createMarkers(regionMarkers);
     if ($(window).scrollTop() >= greatest.top && $(window).scrollTop() <= greatest.bottom) {
       usaMap.removeAllMarkers();
       usaMap.createMarkers({latLng: [37.7749295,-122.4194155], name: "San Francisco"});
-    }
-
-    if ($(window).scrollTop() >= northeast.top && $(window).scrollTop() <= northeast.bottom) {
-      usaMap.removeAllMarkers();
-      usaMap.createMarkers(regions.northeast);
     }
 
   });
