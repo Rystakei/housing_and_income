@@ -9,6 +9,7 @@
     "d3": "~3.5.5",
     "bootstrap-sass": "~3.3.4",
     "underscore": "~1.8.3",
-    "bower-jvectormap-2": "*"
+    "bower-jvectormap-2": "*",
+    "select2": "~4.0.0"
   }
 }

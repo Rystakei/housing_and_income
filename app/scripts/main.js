@@ -4,16 +4,26 @@ var series = [];
 
 
 $.each(sortedData, function(key, value) {
+  value["id"]=key;
+  console.log("Id ", value.id);
 	labels.push(value.city);
 	var income = value.income;
 	var ratio = value.ratio;
 
 	series.push({meta: value.city, value: ratio});
 
+});
 
-  var myOption = $('<option value="'+ key + '">' + value.city + '</option>');
+//sort cities alphabetically and create options for select element
+
+var alphabeticData = _.sortBy(sortedData, function(i) {
+  return i.city.toLowerCase();
+});
+
+$.each(alphabeticData, function(key, value){
+  var myOption = $('<option value="'+ value.id + '">' + value.city + '</option>');
   $('select').append(myOption);
-
+  $('select').select2(); 
 });
 
 //Animated us map
