@@ -30,16 +30,9 @@ img {
   top: 0;
 }
 #myAffix .highlights-container {
-
   p {
     text-align: center;
   }
-  // text-align: center;
-  // text-align: center;
-  // position: relative;
-  // font-size: 30px;
-  // position: absolute;
-  // bottom: 0;
 }
 
 #myAffix {
@@ -81,8 +74,12 @@ img {
 		color: blue;
 	}
 
+	&:first-of-type {
+		margin-top: 15px;
+	}
+
 	&:hover {
-		border: dashed 5px black;
+		border: solid 5px black;
 	}
 }
 
