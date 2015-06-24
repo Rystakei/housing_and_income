@@ -6,6 +6,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
 
+//colors
+$highlightColor: #F8C537;
+
 body {
 	position: relative;
 }
@@ -13,6 +16,7 @@ body {
 #map{
 	min-height: 600px;
 }
+
 
 .ct-chart .ct-label.ct-horizontal {
   color: #333;
@@ -26,6 +30,14 @@ img {
 }
 
 
+.green {
+	color: #81968F;
+}
+
+
+.usa-historical-chart {
+	
+}
 .affix-top {
   top: 0;
 }
@@ -54,11 +66,15 @@ img {
 	text-align: center;
 	line-height: 500px;
 	min-height: 620px;
-	border: solid 5px black;
-	margin-bottom: 10px;
-	padding: 0px 5px;
+	// border: solid 2px darken(#333, 10%);
+	color: white;
+	// background-color: #2274A5;
+	background-color: #333;
+	margin-bottom: 20px;
+	padding: 0px 10px;
 
 	h1 {
+		color: white;
 		text-align: center;
 		font-size: 60px;
 		vertical-align: middle;
@@ -71,17 +87,21 @@ img {
 	}
 
 	.fact-ratio {
-		color: blue;
+		color: darken($highlightColor, 30%);
 	}
 
 	&:first-of-type {
 		margin-top: 15px;
 	}
+}
 
-	&:hover {
-		border: solid 5px black;
+.fact-focus {
+	background-color: gray;
+	.fact-ratio {
+		color: $highlightColor;	
 	}
 }
+
 
 .row.some-numbers{
 	border-top: solid 5px black;
@@ -102,7 +122,7 @@ img {
 	background: black;
 
 	b {
-		color: yellow;
+		color: $highlightColor;
 	}
 
 	h1, h2 {

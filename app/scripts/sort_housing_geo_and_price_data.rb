@@ -29,7 +29,7 @@ places =
 		{"city"=>"Memphis","state"=>"TN","region"=>"South","lat"=>nil, "lng" => nil},
 		{"city"=>"Seattle","state"=>"WA","region"=>"West","lat"=>nil, "lng" => nil},
 		{"city"=>"Denver","state"=>"CO","region"=>"West","lat"=>nil, "lng" => nil},
-		{"city"=>"WA","state"=>"DC","region"=>"Northeast","lat"=>nil, "lng" => nil},
+		{"city"=>"Washington","state"=>"DC","region"=>"Northeast","lat"=>nil, "lng" => nil},
 		{"city"=>"Boston","state"=>"MA","region"=>"Northeast","lat"=>nil, "lng" => nil},
 		{"city"=>"Nashville","state"=>"TN","region"=>"South","lat"=>nil, "lng" => nil},
 		{"city"=>"Baltimore","state"=>"MD","region"=>"South","lat"=>nil, "lng" => nil},
@@ -45,7 +45,7 @@ places =
 		{"city"=>"Long Beach","state"=>"CA","region"=>"West","lat"=>nil, "lng" => nil},
 		{"city"=>"Kansas City","state"=>"MO","region"=>"Midwest","lat"=>nil, "lng" => nil},
 		{"city"=>"Mesa","state"=>"AZ","region"=>"West","lat"=>nil, "lng" => nil},
-		{"city"=>"VA Beach","state"=>"VA","region"=>"South","lat"=>nil, "lng" => nil},
+		{"city"=>"Virginia Beach","state"=>"VA","region"=>"South","lat"=>nil, "lng" => nil},
 		{"city"=>"Atlanta","state"=>"GA","region"=>"South","lat"=>nil, "lng" => nil},
 		{"city"=>"Colorado Springs","state"=>"CO","region"=>"West","lat"=>nil, "lng" => nil},
 		{"city"=>"Omaha","state"=>"NE","region"=>"Midwest","lat"=>nil, "lng" => nil},
@@ -60,11 +60,9 @@ places =
 	]
 
 places.each do |place| 
-	puts place
 	state = place["state"]
 	city = place["city"].gsub(" ", "+")
 	url = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id=X1-ZWz1erkbtbrv2j_76gmj&state=#{state}&city=#{city}"
-	puts url
 	doc = Nokogiri::XML(open(url))
 
 	house_price = doc.at('name:contains("Median Single Family Home Value")').next_sibling.css('value')[0].text.strip
@@ -72,24 +70,15 @@ places.each do |place|
 
 	place["house_price"] = house_price
 	place["income"] = income
-	puts "Median Single Family Home", house_price
-	puts "Median Household Income", income
-	puts place
 end
 
 
 #Add Geographic Data
 
-south = []
-midwest = []
-west = []
-northeast = []
-
 regions = {"south" => [], "midwest" => [], "northeast" => [], "west" => []}
 places.each do |datum|
-  region = datum["region"].downcase
-  # puts region.downcase
 
+  region = datum["region"].downcase
   results = Geocoder.search(datum["city"])
   location = results[0].data["geometry"]["location"]
   lat = location['lat']
@@ -98,16 +87,10 @@ places.each do |datum|
   datum["lat"]=lat
   datum["lng"]=lng
 
-  puts "Datum: #{datum}"
-
   regions[region] << datum
   sleep(10)
 end
 
-puts "Northeast: #{regions["northeast"].length}"
-puts "South: #{regions["south"].length}"
-puts "Midwest: #{regions["midwest"].length}"
-puts "West: #{regions["west"].length}"
 
 city = "San Francisco"
 
@@ -115,12 +98,10 @@ city = "San Francisco"
 
 places.each do |place| 
 	place["ratio"] = (place["house_price"].to_f / place["income"].to_f).round(2)
-	puts "ratio #{place["ratio"]}"
 end
 
 sorted_data = places.sort_by { |k| k["ratio"] }
 
-puts sorted_data
 
 
 #Write json file for data
