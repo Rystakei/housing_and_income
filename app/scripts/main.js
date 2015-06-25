@@ -1,3 +1,4 @@
+
  $.getJSON('scripts/june_places_sorted_data.json', function(sortedData) {
 
   var labels = [];
@@ -31,22 +32,21 @@
 
   var regions = {northeast: [], west: [], south: [], midwest: []};
 
-  $('document').ready(function() {
-    var usaMap = $('#map').vectorMap({map: 'us_aea_en', 
-      backgroundColor: "white",
-      zoomOnScroll: false,
-      regionStyle: {
-        initial: {
-          fill: '#333'
-        }
-      },
-      markerStyle: {
-        initial: {
-          fill: highlightColor
-        }
-      },
-      markers: [{latLng: [40.7127837,-74.0059413]}]
-    });  
+  var usaMap = $('#map').vectorMap({map: 'us_aea_en', 
+    backgroundColor: "white",
+    zoomOnScroll: false,
+    regionStyle: {
+      initial: {
+        fill: '#333'
+      }
+    },
+    markerStyle: {
+      initial: {
+        fill: highlightColor
+      }
+    },
+    markers: [{latLng: [40.7127837,-74.0059413]}]
+  });  
 
   var regionMarkers = [];
 
@@ -57,6 +57,11 @@
   });
 
   usaMap.createMarkers(regionMarkers);
+
+
+    
+
+
 
     var dataSection = $('#lowest-ratio').first();
     var greatestSection = $('#greatest-ratio').first();
@@ -113,16 +118,16 @@
 
     });
 
-  });
 
 
 
   //end animated us map
 
   //Affixing the map
+  var affix = $('#myAffix');
+  var offsetTop = $('#myAffix').first().offset().top,
+      offsetBottom = offsetTop + affix.outerHeight() - 700;
 
-  var offsetTop = $('#myAffix').first().offset().top;
-  var offsetBottom = $('.more-info').first().offset().top;
 
   $("#myAffix").affix({
           offset: {
@@ -130,7 +135,8 @@
                 return offsetTop;
               },
               bottom: function() {
-                return 650;
+                console.log("returning", offsetTop, offsetBottom);
+                return offsetBottom;
               }
         }
       });
@@ -139,8 +145,8 @@
 
 
 
+  //charts
   var data = {labels: labels, series: [series]};
-
 
   var options = {
     showLine: false,
@@ -244,6 +250,8 @@
       return (b.charAt(0) > 0 && !(c || ".").lastIndexOf(".") ? b.replace(/(\d)(?=(\d{3})+$)/g, "$1,") : b) + c;
     });
   }
+
+  //need to move the code below
 
 
   // var historicSeries = [];
