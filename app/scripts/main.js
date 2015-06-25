@@ -189,7 +189,9 @@
       $(v).attr('ct:key', k);
     });
 
-  var dataPoints = d3.selectAll('.ct-point')[0];
+  var dataPoints = sortedData.length;
+
+  console.log("sortedData length?", sortedData.length);
 
 
   chart.on('draw', function() {
@@ -199,6 +201,8 @@
     $.each($('.ct-point'), function(k,v) {
       $(v).attr('ct:key', k);
     });
+
+
 
     console.log("drawnPoints.length", drawnPoints.length, "dataPoints.length", dataPoints.length);
     if (drawnPoints.length === dataPoints.length) {
