@@ -183,6 +183,7 @@
 
   var chart = new Chartist.Line('#cities-chart', data, options, responsiveOptions);
   $('document').ready(function() {
+    console.log("ready!!");
 
     $.each($('.ct-point'), function(k,v) {
       $(v).attr('ct:key', k);
@@ -192,6 +193,7 @@
 
 
   chart.on('draw', function() {
+    console.log("drawing...");
     var drawnPoints = d3.select('body').selectAll('.ct-point')[0];
 
     $.each($('.ct-point'), function(k,v) {
@@ -199,7 +201,9 @@
     });
 
     if (drawnPoints.length === dataPoints.length) {
+      console.log("selecting with d3..");
       d3.selectAll('.ct-point').on('mouseenter', function() {
+        console.log("actually selecting on mouseenter");
         var key = $(this).attr('ct:key');
         $('select').first().val(key).change();
         d3.selectAll('.ct-point')
@@ -210,6 +214,8 @@
   });
 
     d3.selectAll('.ct-point').on('mouseenter', function() {
+      console.log("actually selecting on mouseenter #2");
+
       var key = $(this).attr('ct:key');
       $('select').first().val(key).change();
       d3.selectAll('.ct-point')
