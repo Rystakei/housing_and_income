@@ -200,6 +200,7 @@
       $(v).attr('ct:key', k);
     });
 
+    console.log("drawnPoints.length", drawnPoints.length, "dataPoints.length", dataPoints.length);
     if (drawnPoints.length === dataPoints.length) {
       console.log("selecting with d3..");
       d3.selectAll('.ct-point').on('mouseenter', function() {
