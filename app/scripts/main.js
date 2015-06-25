@@ -204,8 +204,7 @@
 
 
 
-    console.log("drawnPoints.length", drawnPoints.length, "dataPoints.length", dataPoints.length);
-    if (drawnPoints.length === dataPoints.length) {
+    if (drawnPoints.length === sortedData.length) {
       console.log("selecting with d3..");
       d3.selectAll('.ct-point').on('mouseenter', function() {
         console.log("actually selecting on mouseenter");
