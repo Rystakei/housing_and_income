@@ -4,7 +4,7 @@
 
   var labels = [];
   var series = [];
-  var highlightColor = '#E6AF2E';
+  var highlightColor = '#F8F991';
 
 
   $.each(sortedData, function(key, value) {
@@ -70,17 +70,6 @@
     var northeastSection = $('#northeast').first(),
         citiesSection = $('#cities').first();
 
-    //add city names to proper regions
-    $.each(regions, function(region,city) {
-      console.log(region, city);
-
-      cityRatios = [];
-
-       $.each(city, function(k,v) {
-        // $('#' + region + ' .regional-cities').append("<p class='regional-city-name list-group-item'>" + v.name + "</li>");
-      });
-    });
-
     //update markers while scrolling
     var lowest = {top: dataSection.offset().top,
       bottom: dataSection.offset().top + dataSection.outerHeight()};
@@ -109,10 +98,7 @@
 
         $(window).scroll(function() {
           if ($(window).scrollTop() >= position.top && $(window).scrollTop() <= position.bottom) {
-            usaMap.removeAllMarkers();
-            usaMap.createMarkers(regions[regionName]);
-            $('.fact-region').removeClass('fact-focus');
-            region.addClass('fact-focus');
+            highlightRegion(regions[regionName], region);
           }
         });
 
@@ -122,8 +108,6 @@
 
     $(window).scroll(function() {
       if ($(window).scrollTop() >= cities.top && $(window).scrollTop() <= cities.bottom) {
-        usaMap.removeAllMarkers();
-        usaMap.createMarkers(regionMarkers);
         highlightRegion(regionMarkers, citiesSection);
       }
 
@@ -269,23 +253,23 @@
   }
 
 
-  var historicSeries = [];
-  var historicLabels = [];
+  // var historicSeries = [];
+  // var historicLabels = [];
 
-  var historicData =
-  [{"year":1965,"median_income":6000,"median_price":20000},{"year":1970,"median_income":9000,"median_price":23400},{"year":1975,"median_income":13000,"median_price":39300},{"year":1980,"median_income":21000,"median_price":64600},{"year":1985,"median_income":27000,"median_price":84300},{"year":1990,"median_income":35000,"median_price":122900},{"year":1995,"median_income":40000,"median_price":133900},{"year":2000,"median_income":50000,"median_price":169000},{"year":2005,"median_income":56000,"median_price":240900},{"year":2010,"median_income":60000,"median_price":221800}];
-  $.each(historicData, function(key, value) {
-    historicLabels.push(value.year);
-    var income = value.median_income;
-    var ratio = value.median_price / value.median_income;
-    historicSeries.push(ratio);
+  // var historicData =
+  // [{"year":1965,"median_income":6000,"median_price":20000},{"year":1970,"median_income":9000,"median_price":23400},{"year":1975,"median_income":13000,"median_price":39300},{"year":1980,"median_income":21000,"median_price":64600},{"year":1985,"median_income":27000,"median_price":84300},{"year":1990,"median_income":35000,"median_price":122900},{"year":1995,"median_income":40000,"median_price":133900},{"year":2000,"median_income":50000,"median_price":169000},{"year":2005,"median_income":56000,"median_price":240900},{"year":2010,"median_income":60000,"median_price":221800}];
+  // $.each(historicData, function(key, value) {
+  //   historicLabels.push(value.year);
+  //   var income = value.median_income;
+  //   var ratio = value.median_price / value.median_income;
+  //   historicSeries.push(ratio);
 
-  });
+  // });
 
-  new Chartist.Line('#chart1', {
-    labels: historicLabels,
-    series: [historicSeries]
-  });
+  // new Chartist.Line('#chart1', {
+  //   labels: historicLabels,
+  //   series: [historicSeries]
+  // });
 
 
 });

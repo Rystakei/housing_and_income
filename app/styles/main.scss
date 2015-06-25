@@ -8,6 +8,19 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 //colors
 $highlightColor: #F8C537;
+$highlightColor: #F8F991;
+$secondaryColor: #313C5B;
+$tertiaryColor: #3D315B;
+
+
+
+#cities-chart.ct-chart .ct-series.ct-series-a .ct-point {
+	stroke: $tertiaryColor;
+
+	&.emphasis {
+		stroke: red;
+	}
+}
 
 body {
 	position: relative;
@@ -69,7 +82,7 @@ img {
 	// border: solid 2px darken(#333, 10%);
 	color: white;
 	// background-color: #2274A5;
-	background-color: #333;
+	background-color: $secondaryColor;
 	margin-bottom: 20px;
 	padding: 0px 10px;
 
@@ -87,7 +100,7 @@ img {
 	}
 
 	.fact-ratio {
-		color: darken($highlightColor, 30%);
+		color: $highlightColor;
 	}
 
 	&:first-of-type {
@@ -96,9 +109,9 @@ img {
 }
 
 .fact-focus {
-	background-color: gray;
+	background-color: lighten($secondaryColor, 10%);
 	.fact-ratio {
-		color: $highlightColor;	
+		color: lighten($highlightColor, 10%);	
 	}
 }
 
@@ -119,7 +132,7 @@ img {
 
 .more-info {
 	color: white;
-	background: black;
+	background: $tertiaryColor;
 
 	b {
 		color: $highlightColor;
@@ -163,7 +176,7 @@ p ,p b{
 
 
 .chart-section {
-  background: lighten(black, 10%);
+  background: #333;
   color: white;
   height: 100%;
 }
