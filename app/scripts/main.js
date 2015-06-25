@@ -25,14 +25,14 @@
   $.each(alphabeticData, function(key, value){
     var myOption = $('<option value="'+ value.id + '">' + value.city + '</option>');
     $('select').append(myOption);
-    $('select').select2(); 
+    $('select').select2();
   });
 
   //Animated us map
 
   var regions = {northeast: [], west: [], south: [], midwest: []};
 
-  var usaMap = $('#map').vectorMap({map: 'us_aea_en', 
+  var usaMap = $('#map').vectorMap({map: 'us_aea_en',
     backgroundColor: "white",
     zoomOnScroll: false,
     regionStyle: {
@@ -46,7 +46,7 @@
       }
     },
     markers: [{latLng: [40.7127837,-74.0059413]}]
-  });  
+  });
 
   var regionMarkers = [];
 
@@ -59,7 +59,7 @@
   usaMap.createMarkers(regionMarkers);
 
 
-    
+
 
 
 
@@ -189,8 +189,6 @@
       $(v).attr('ct:key', k);
     });
 
-  var dataPoints = sortedData.length;
-
   console.log("sortedData length?", sortedData.length);
 
 
@@ -228,6 +226,7 @@
     });
 
     $('select').on('change', function() {
+      var dataPoints = d3.selectAll(".ct-point")[0];
       var city = $(this).val();
       var cityData = sortedData[city];
       var housePrice = delimitNumbers(cityData.house_price);
