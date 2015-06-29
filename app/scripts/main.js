@@ -26,15 +26,12 @@
       $.each(sortedData, function(key, value) {
         value["id"]=key;
         labels.push(value.city);
-            income = value.income;
-            ratio = value.ratio;
-
-        series.push({meta: value.city, value: ratio});
+        series.push({meta: value.city, value: value.ratio});
       });
     }
 
     function addCitiesToSelectElement() {
-      alphabeticData = _.sortBy(sortedData, function(i) {
+      var alphabeticData = _.sortBy(sortedData, function(i) {
         return i.city.toLowerCase();
       });
 
@@ -60,13 +57,19 @@
             fill: highlightColor
           }
         },
-        markers: [{latLng: [40.7127837,-74.0059413]}]
+        markers: [{latLng: [40.7127837,-74.0059413]}] //do I need to set this here?
       });
 
       var usaMap = $('#map').vectorMap('get', 'mapObject');
+
       $.each(sortedData, function(k,v) {
-        regionMarkers.push({latLng: [v.lat, v.lng], name: v.city});
-        regions[v.region.toLowerCase()].push({latLng: [v.lat, v.lng], name: v.city, ratio: v.ratio});
+        var latLng = [v.lat, v.lng],
+            name = v.city,
+            ratio = v.ratio,
+            region = v.region.toLowerCase();
+
+        regionMarkers.push({latLng: latLng, name: name});
+        regions[region].push({latLng: latLng, name: name, ratio: ratio});
       });
 
       usaMap.createMarkers(regionMarkers);
@@ -80,7 +83,8 @@
         $.each(city, function(k,v) { cityRatios.push(v.ratio); });
 
         averageRegionalRatio = (_.reduce(cityRatios, 
-            function(a,b) { return a + b; }, 0) / cityRatios.length).toFixed(2);
+                                function(a,b) { return a + b; }, 0) / 
+                                cityRatios.length).toFixed(2);
 
         $('#' + region + ' .fact-ratio').text(averageRegionalRatio);
       });
@@ -88,7 +92,7 @@
 
     function addChartEventHandlers() {
       chart.on('draw', function() {
-        drawnPoints = d3.select('body').selectAll('.ct-point')[0];
+        var drawnPoints = d3.select('body').selectAll('.ct-point')[0];
 
         if (drawnPoints.length === sortedData.length) {
           addCityNameToDataPoints();
@@ -182,7 +186,8 @@
               labelInterpolationFnc: function (value) {
                 return value[0];
               },
-              showGrid: false
+              showGrid: false,
+              showLabel: false
             }
           }
         ]
@@ -212,21 +217,24 @@
 
     function setupMapRegionHighlights() {
       $('.fact-region').each(function(k,v) {
-        var region = $(v);
-        regionName = region.attr('id');
-        position = {
-                    top: region.offset().top,
-                    bottom: region.offset().top + region.outerHeight()};
+        var region = $(v),
+            regionName = region.attr('id'),
+            position = {
+                        top: region.offset().top,
+                        bottom: region.offset().top + region.outerHeight()
+                       };
+        
         updateRegionOnScroll(regions[regionName], region);
       });
     }
 
 
     function updateMapMarkers() {
+      //think the variables need clean-up, or at the very least some renaming
       var dataSection = $('#lowest-ratio').first(),
-        greatestSection = $('#greatest-ratio').first(),
-        northeastSection = $('#northeast').first(),
-        citiesSection = $('#cities').first();
+          greatestSection = $('#greatest-ratio').first(),
+          northeastSection = $('#northeast').first(),
+          citiesSection = $('#cities').first();
 
         updateRegionOnScroll({latLng: [42.331427,-83.0457538], name: "Detroit"}, dataSection);
         updateRegionOnScroll({latLng: [37.7749295,-122.4194155], name: "San Francisco"}, greatestSection);
@@ -235,11 +243,11 @@
 
     function updateRegionOnScroll(markers, region) {
       var regionSections = {top: region.offset().top,
-          bottom: region.offset().top + region.outerHeight()};
+                            bottom: region.offset().top + region.outerHeight()};
 
       $(window).scroll(function() {
         var withinRegion = ($(window).scrollTop() >= regionSections.top && 
-            $(window).scrollTop() <= regionSections.bottom);
+                            $(window).scrollTop() <= regionSections.bottom);
 
         if (withinRegion) { highlightRegion(markers, region); }
       });
@@ -247,6 +255,7 @@
 
 
     function delimitNumbers(str) {
+      //maybe take the number/str received and call toFixed(0) in here to avoid repetition?
       return (str + "").replace(/\b(\d+)((\.\d+)*)\b/g, function(a, b, c) {
         return (b.charAt(0) > 0 && !(c || ".").lastIndexOf(".") ? b.replace(/(\d)(?=(\d{3})+$)/g, "$1,") : b) + c;
       });
