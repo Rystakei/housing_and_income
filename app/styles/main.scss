@@ -7,7 +7,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
 
 //colors
-$highlightColor: #F8C537;
 $highlightColor: #F8F991;
 $secondaryColor: #313C5B;
 $tertiaryColor: #3D315B;
@@ -81,14 +80,21 @@ h1.title {
 	bottom: 20;
 }
 
-#myAffix {
+#usa-map-affix {
 	top: 0px;
 	height: 600px;
+	width: 600px;
 
 	p {
 	  text-align: center;
 	}
+
+	#map {
+		height: 300px;
+		width: 600px;
+	}
 }
+
 
 .fact {
 	text-align: center;
