@@ -45,13 +45,13 @@ h1.title {
 }
 
 
-#usa-map-container{
+#usa-map-container {
 	@media only screen and (max-width: 767px) {
 	    /* phones */
 	    display: none;
 	}
 	#map {
-		min-height: 600px;
+		// min-height: 600px;
 	}
 }
 
@@ -82,16 +82,16 @@ h1.title {
 
 #usa-map-affix {
 	top: 0px;
-	height: 600px;
-	width: 600px;
+	height: 400px;
+	width: 500px;
 
 	p {
 	  text-align: center;
 	}
 
 	#map {
-		height: 300px;
-		width: 600px;
+		height: 100%;
+		width: 100%;
 	}
 }
 
@@ -103,7 +103,7 @@ h1.title {
 	color: white;
 	background-color: $secondaryColor;
 	margin-bottom: 20px;
-	padding: 0px 10px;
+	padding: 20px 10px;
 
 	h1 {
 		color: white;
@@ -140,6 +140,8 @@ h1.title {
 .row.some-numbers {
 	position: relative;
 	border-top: solid 1px #E5E5E5;
+	padding-bottom: 50px;
+	padding-top: 20px;
 }
 
 .row.historical-chart h1 {

@@ -4,7 +4,6 @@
 
     var labels = [],
         series = [],
-        highlightColor = '#F8F991',
         regions = {northeast: [], west: [], south: [], midwest: []},
         regionMarkers = [];
 
@@ -44,7 +43,12 @@
     }
 
     function initializeMap() {
-      $('#map').vectorMap({map: 'us_aea_en',
+      var usaMap,
+          highlightColor = '#F8F991';
+
+      //does this return the mapObject instance? If so, maybe I can get rid of a line?
+      $('#map').vectorMap({
+        map: 'us_aea_en',
         backgroundColor: "white",
         zoomOnScroll: false,
         regionStyle: {
@@ -56,11 +60,11 @@
           initial: {
             fill: highlightColor
           }
-        },
-        markers: [{latLng: [40.7127837,-74.0059413]}] //do I need to set this here?
+        }
       });
 
-      var usaMap = $('#map').vectorMap('get', 'mapObject');
+      usaMap = $('#map').vectorMap('get', 'mapObject');
+      usaMap.updateSize();
 
       $.each(sortedData, function(k,v) {
         var latLng = [v.lat, v.lng],
@@ -125,6 +129,7 @@
     }
 
     function highlightRegion(markerOptions, region) {
+      //chain the removing and creating
       var usaMap = $('#map').vectorMap('get', 'mapObject');
       usaMap.removeAllMarkers();
       usaMap.createMarkers(markerOptions);
@@ -199,9 +204,9 @@
 
     function affixMap() {
       var affix = $('#usa-map-affix'),
-          offsetTop = $('#usa-map-affix').first().offset().top,
-          offsetBottom = offsetTop + affix.outerHeight() - 700;
-
+          offsetTop = $('#usa-map-affix').first().parent().offset().top,
+          offsetBottom = offsetTop;
+          console.log("offsetTop", offsetTop);
 
       $("#usa-map-affix").affix({
         offset: {
@@ -209,7 +214,9 @@
               return offsetTop;
             },
             bottom: function() {
-              return offsetBottom;
+              console.log("top", $('#usa-map-affix').first().offset().top);
+              console.log("variable", offsetTop);
+              return offsetTop - offsetTop * .1;
             }
           }
       });
@@ -284,6 +291,20 @@
 
 
   });
+
+$(window).on('resize', function() {
+  console.log("Resized!");
+  var affixedMap = $('#usa-map-affix'),
+      newWidth = $('#usa-map-affix').parent().css('width');
+
+  affixedMap.css('width', newWidth);
+
+  usaMap = $('#map').vectorMap('get', 'mapObject');
+  usaMap.updateSize();
+
+
+
+});
 
  });
  
