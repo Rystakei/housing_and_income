@@ -169,10 +169,7 @@
           labelInterpolationFnc: function(value, index) {
             return value;
           }
-        },
-        plugins: [
-          Chartist.plugins.tooltip({currency: undefined})
-        ]
+        }
       };
 
 
