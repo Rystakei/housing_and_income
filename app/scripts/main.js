@@ -19,6 +19,11 @@
     addCityNameToDataPoints();
     addHighlightOnMouseEnter();
     addChartEventHandlers();
+    addToolTips();
+
+    function addToolTips() {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
 
 
     function createLabelsAndSeries() {

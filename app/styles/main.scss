@@ -1,6 +1,20 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path: "../bower_components/fontawesome/fonts/";
+
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('@{fa-font-path}/fontawesome-webfont.eot?v=3.0.1');
+  src: url('@{fa-font-path}/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('@{fa-font-path}/fontawesome-webfont.woff?v=3.0.1') format('woff'),
+    url('@{fa-font-path}/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // bower:scss
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "fontawesome/scss/font-awesome.scss";
 // endbower
 @import url(http://fonts.googleapis.com/css?family=Maven+Pro);
 
@@ -30,6 +44,13 @@ p,p b {
 	letter-spacing: 0.040em;
 	line-height: 1.25;
 	font-family: 'Maven Pro';
+}
+
+
+sup.income-info {
+	color: $highlightColor;
+	cursor: pointer;
+	padding-left: -4px;
 }
 
 .title {
@@ -172,7 +193,7 @@ h1.title {
 }
 
 .city-data {
-  height: 455px;
+  height: 600px;
   display: none;
 
   h1 {
@@ -187,7 +208,33 @@ h1.title {
 	color: white;
 }
 
+.referenced {
+	padding-top: 75px;
 
+	h1 {
+		margin: 0;
+		font-size: 16px;
+		font-weight: bold;
+	}
+}
+
+.more-info {
+	background-attachment: fixed;
+}
+
+.references {
+	background-color: #3A539B;
+	height: 500px;
+
+	h1 {
+		color: white;
+		text-align: center;
+		font-size: 60px;
+	}
+	h2 {
+		font-size: 45px;
+	}
+}
 
 
 

@@ -46,8 +46,35 @@
           <h3><span class="ratio"></span>x income to purchase a house</h3>
           <p> Median house price: $<span class="house-price"></span></p>
           <p> Median household income: $<span class="median-income"></span></p>
-          <p> Recommended income to comfortably afford a house: $<span class="recommended-income"></span></p>
-          <p> Estimated income needed to qualify for a mortgage: $<span class="mortgage-income"></span></p>
+          <p> Recommended income to comfortably afford a house
+          <sup class="income-info" data-toggle="tooltip" data-placement="top" title="Experts recommend purchasing homes priced at 3 times the household's income or less. 2 to 2.5 times the income would be ideal, and 4 times the income should be the maximum price paid if possible.">
+          <i class="fa fa-info-circle"></i>
+          </sup>:
+            $<span class="recommended-income"></span></p>
+          <p> Estimated income needed to qualify for a mortgage
+          <sup class="income-info" data-toggle="tooltip" data-placement="top" title="Based on a 20% down payment and a 31% front-end ratio, a household  might qualify for a mortgage for up to five times its income, although taking such a large mortgage might not be a great idea. ">
+          <i class="fa fa-info-circle"></i>
+          </sup>:
+           $<span class="mortgage-income"></span>
+          </p>
+
+          <div class="referenced">
+            <h1>References</h1>
+            <ul> 
+              <li> Data from <a href="http://www.trulia.com">Trulia</a>'s API</li>
+              <li> <a href="http://budgeting.thenest.com/reasonable-mortgage-22046.html">
+                    <b>The Nest</b> - What Is a Reasonable Mortgage?
+                   </a>
+              </li>
+              <li>
+                <a href="http://www.mymoneyblog.com/4-different-rules-of-thumb-for-how-much-house-you-can-afford.html">
+                  <b>My Money Blog</b> - 4 Different Rules of Thumb For How Much House You Can Afford
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
         </div>
 
         <div class="col-xs-12 col-md-8 col-lg-8 ratio-chart">
@@ -116,6 +143,14 @@
 
           <h1>However, of the 50 most populous cities in the U.S., in only <b>10</b> of them can a household making the median income for the city to purchase a median-priced home without paying more than 4 times its income.</h1>
         </div>
+      </div>
+    </div>
+
+    <div class="row references">
+      <div class="col-xs-12">
+        <h1> References </h1>
+        <a href="#"><h2>Information regarding information from {{link}}</h2></a>
+        <a href="#"><h2>Data from Trulia API</h2></a>
       </div>
     </div>
       <!-- Need to move historical data -->
